@@ -1,15 +1,10 @@
-Here is the complete README.md file formatted properly in Markdown. You can directly copy and paste it into your GitHub repository.
 
-
----
-
-README.md
 
 # **SecureChat - Encrypted P2P Communication with Tor & I2P**
 
 SecureChat is a **fully encrypted**, **peer-to-peer (P2P)** messaging application with **WebSockets**, **AES-256 encryption**, and **Tor/I2P support** for **anonymous and secure communication**.
 
----
+
 
 ## **Features**
 - ✅ **End-to-End Encryption (AES-256 & Argon2 hashing)** – Messages are encrypted before transmission.  
@@ -21,7 +16,7 @@ SecureChat is a **fully encrypted**, **peer-to-peer (P2P)** messaging applicatio
 - ✅ **Multi-layer Authentication** – Password + device fingerprinting for enhanced security.  
 - ✅ **Metadata Anonymization** – Removes tracking data from messages and files.  
 
----
+
 
 ## **Installation**
 
@@ -40,7 +35,6 @@ venv\Scripts\activate
 pip install -r requirements.txt
 
 
----
 
 Using pipx
 
@@ -52,7 +46,7 @@ python -m pipx ensurepath
 pipx install secure-chat
 
 
----
+
 
 Running SecureChat
 
@@ -65,7 +59,7 @@ Start the Terminal Chat
 python start_chat.py
 
 
----
+
 
 Enabling Tor & I2P for Anonymous Communication
 
@@ -138,8 +132,3 @@ Run SecureChat on a secure machine to prevent local exploits.
 
 
 
----
-
-License
-
-SecureChat is an open-source project developed for privacy, security, and anonymous communication. Stay safe
