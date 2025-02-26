@@ -135,15 +135,14 @@ Modify SecureChat config.json to use I2P
 
 # Security Considerations
 
-# Ensure Tor/I2P is running before chatting to keep communication anonymous.
+***Ensure Tor/I2P is running before chatting to keep communication anonymous.***
 
-Never share session keys or private keys outside SecureChat.
+***Never share session keys or private keys outside SecureChat.***
 
-Use strong passwords and store them securely.
+***Use strong passwords and store them securely.***
 
-Monitor logs for suspicious activity.
+***Monitor logs for suspicious activity.***
 
-Run SecureChat on a secure machine to prevent local exploits.
-
+***Run SecureChat on a secure machine to prevent local exploits.***
 
 
