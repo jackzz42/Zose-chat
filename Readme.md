@@ -24,7 +24,7 @@ SecureChat is a **fully encrypted**, **peer-to-peer (P2P)** messaging applicatio
 ```sh
 # Create a virtual environment
 python -m venv venv  
-
+```
 # Activate the virtual environment  
 # On Linux/Mac:
 source venv/bin/activate  
