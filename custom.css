@@ -1,0 +1,212 @@
+/* Dark theme overrides */
+[data-bs-theme=dark] {
+    --bs-body-bg: #1c2333;
+    --bs-body-color: #e0e0e0;
+    --bs-primary: #7c3aed;
+    --bs-primary-rgb: 124, 58, 237;
+    --bs-secondary: #4b5563;
+    --bs-secondary-rgb: 75, 85, 99;
+}
+
+/* Improved chat container */
+.chat-container {
+    height: calc(100vh - 200px);
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#chatMessages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    background: var(--bs-dark);
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bs-primary) var(--bs-dark);
+}
+
+/* Custom scrollbar */
+#chatMessages::-webkit-scrollbar {
+    width: 8px;
+}
+
+#chatMessages::-webkit-scrollbar-track {
+    background: var(--bs-dark);
+}
+
+#chatMessages::-webkit-scrollbar-thumb {
+    background: var(--bs-primary);
+    border-radius: 4px;
+}
+
+.message {
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 0.5rem;
+    border-left: 3px solid var(--bs-primary);
+    transition: all 0.2s ease;
+    animation: messageIn 0.3s ease-out;
+}
+
+.message:hover {
+    transform: translateX(4px);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.system-message {
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+    color: var(--bs-info);
+    font-style: italic;
+    text-align: center;
+    background: rgba(var(--bs-info-rgb), 0.1);
+    border-radius: 0.5rem;
+}
+
+.room-info {
+    background: var(--bs-dark);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.room-info h2 {
+    color: var(--bs-primary);
+    margin-bottom: 1rem;
+}
+
+.user-list {
+    background: var(--bs-dark);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-list h4 {
+    color: var(--bs-primary);
+    margin-bottom: 1rem;
+}
+
+.message-input {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--bs-dark);
+    border-radius: 0.5rem;
+}
+
+.message-input input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--bs-body-color);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.message-input input:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 2px rgba(var(--bs-primary-rgb), 0.25);
+}
+
+.file-upload {
+    position: relative;
+    overflow: hidden;
+}
+
+.file-upload input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.encryption-badge {
+    display: inline-block;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    color: var(--bs-primary);
+    border-radius: 2rem;
+    margin-left: 0.5rem;
+}
+
+/* Animation for new messages */
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Improved buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--bs-primary);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: rgba(var(--bs-primary-rgb), 0.9);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: var(--bs-secondary);
+    border: none;
+}
+
+.btn-secondary:hover {
+    background: rgba(var(--bs-secondary-rgb), 0.9);
+    transform: translateY(-1px);
+}
+
+/* Additional styles for encryption information */
+.encryption-info {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 0.5rem;
+}
+
+.encryption-badge {
+    display: inline-block;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: rgba(var(--bs-primary-rgb), 0.1);
+    color: var(--bs-primary);
+    border-radius: 2rem;
+    margin-left: 0.5rem;
+    border: 1px solid rgba(var(--bs-primary-rgb), 0.2);
+}
+
+.encryption-info .small {
+    font-size: 0.75rem;
+    opacity: 0.8;
+    margin-top: 0.25rem;
+}
