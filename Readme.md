@@ -27,37 +27,45 @@ python -m venv venv
 ```
 # Activate the virtual environment  
 # On Linux/Mac:
+```sh
 source venv/bin/activate  
+```
 # On Windows:
+```sh
 venv\Scripts\activate  
-
+```
 # Install dependencies
+```sh
 pip install -r requirements.txt
 
-
+```
 
 Using pipx
+```sh
 
 # Install pipx if not already installed
 python -m pip install --user pipx  
 python -m pipx ensurepath  
 
+```
 # Restart terminal if necessary, then install SecureChat
+```sh
 pipx install secure-chat
 
-
+```
 
 
 Running SecureChat
 
 Start the Web Chat
-
+```sh
 python main.py
 
+```
 Start the Terminal Chat
-
+```sh
 python start_chat.py
-
+```
 
 
 
@@ -67,15 +75,19 @@ Tor Setup
 
 # Install Tor
 # Linux:
+```sh
 sudo apt install tor  
-
+```
 # Mac:
+```sh
 brew install tor  
-
+```
 # Windows: 
+
 # Download Tor Expert Bundle from https://www.torproject.org/download/
 
 # Start Tor
+
 tor &
 
 Modify torrc to allow SOCKS proxy
@@ -97,12 +109,15 @@ I2P Setup
 
 # Install I2P
 # Linux:
+```sh
 sudo apt install i2pd  
-
+```
 # Mac:
+```sh
 brew install i2pd  
-
+```
 # Windows: 
+
 # Download from https://geti2p.net/
 
 # Start I2P
