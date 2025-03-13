@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZOSE - Secure P2P Chat</title>
+    <link rel="stylesheet" href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css">
+    <link rel="stylesheet" href="/static/css/custom.css">
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h1 class="text-center mb-5">ZOSE Secure Chat</h1>
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0">Create a Room</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="createRoomForm">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="custom_room_id" class="form-label">Room ID</label>
+                                <input type="text" class="form-control" id="custom_room_id" name="custom_room_id" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="room_password" class="form-label">Room Password</label>
+                                <input type="password" class="form-control" id="room_password" name="room_password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="security_key" class="form-label">Security Key</label>
+                                <input type="password" class="form-control" id="security_key" name="security_key" required>
+                                <div class="form-text">Your encryption key (used for secure communication).</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Create Room</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Join a Room</h5>
+                    </div>
+                    <div class="card-body">
+                        <form id="joinRoomForm">
+                            <div class="mb-3">
+                                <label for="join_username" class="form-label">Username</label>
+                                <input type="text" class="form-control" id="join_username" name="username" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="room_id" class="form-label">Room ID</label>
+                                <input type="text" class="form-control" id="room_id" name="room_id" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="join_room_password" class="form-label">Room Password</label>
+                                <input type="password" class="form-control" id="join_room_password" name="room_password" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="join_security_key" class="form-label">Security Key</label>
+                                <input type="password" class="form-control" id="join_security_key" name="security_key" required>
+                                <div class="form-text">Enter the same encryption key used to create the room.</div>
+                            </div>
+                            <button type="submit" class="btn btn-secondary w-100">Join Room</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="/static/js/crypto.js"></script>
+    <script src="/static/js/main.js"></script>
+
+    <script>
+        document.getElementById("createRoomForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            let username = document.getElementById("username").value;
+            let roomId = document.getElementById("custom_room_id").value;
+            let roomPassword = document.getElementById("room_password").value;
+            let securityKey = document.getElementById("security_key").value;
+
+            // Encrypt credentials before sending
+            let encryptedData = await encryptData({ username, roomId, roomPassword, securityKey });
+
+            fetch("/create_room", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ encrypted: encryptedData })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = `/room/${roomId}`;
+                } else {
+                    alert("Error: " + data.error);
+                }
+            });
+        });
+
+        async function encryptData(data) {
+            const key = new TextEncoder().encode("encryption-key");  // Use a better key management system
+            const iv = crypto.getRandomValues(new Uint8Array(12));
+            const encoded = new TextEncoder().encode(JSON.stringify(data));
+            const algorithm = { name: "AES-GCM", iv: iv };
+            const cryptoKey = await crypto.subtle.importKey("raw", key, algorithm, false, ["encrypt"]);
+            const encrypted = await crypto.subtle.encrypt(algorithm, cryptoKey, encoded);
+            return btoa(String.fromCharCode(...iv) + String.fromCharCode(...new Uint8Array(encrypted)));
+        }
+    </script>
+</body>
+</html>
