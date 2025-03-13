@@ -2,7 +2,7 @@
 
 # **SecureChat - Encrypted P2P Communication with Tor & I2P**
 
-SecureChat is a **fully encrypted**, **peer-to-peer (P2P)** messaging application with **WebSockets**, **AES-256 encryption**, and **Tor/I2P support** for **anonymous and secure communication**.
+SecureChat is a **fully encrypted**,  messaging application with **WebSockets**, **AES-256 encryption**, and **Tor/I2P support** for **anonymous and secure communication**.
 
 
 
@@ -10,9 +10,9 @@ SecureChat is a **fully encrypted**, **peer-to-peer (P2P)** messaging applicatio
 - ✅ **End-to-End Encryption (AES-256 & Argon2 hashing)** – Messages are encrypted before transmission.  
 - ✅ **WebSockets Security (HMAC authentication, TLS encryption)** – Ensures message integrity.  
 - ✅ **Tor & I2P Routing** – Enables anonymous and untraceable communication.  
-- ✅ **P2P Direct Messaging** – No central server; all communication is peer-to-peer.  
-- ✅ **Secure File Sharing** – Encrypted file transfers using AES-256 and ECDH.  
-- ✅ **One-Time Secure Login Links** – Temporary access URLs to prevent unauthorized logins.  
+ 
+- ✅ **Secure File Sharing** – Encrypted file transfers using AES-256 and ECDH.
+- 
 - ✅ **Multi-layer Authentication** – Password + device fingerprinting for enhanced security.  
 - ✅ **Metadata Anonymization** – Removes tracking data from messages and files.  
 
