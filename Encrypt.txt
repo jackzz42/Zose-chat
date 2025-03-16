@@ -1,0 +1,6 @@
+iptables -A OUTPUT -o wlan0 -p tcp --dport 443 -j MARK --set-mark 1
+iptables -t nat -A POSTROUTING -o wlan0 -j MASQUERADE
+
+# Local Encryption (AES-256 + ChaCha20)
+openssl enc -aes-256-cbc -pbkdf2 -salt -in /dev/stdin -out /dev/stdout -k YourSuperSecretPass | \
+openssl enc -chacha20 -pbkdf2 -salt -in /dev/stdin -out /dev/stdout -k AnotherSuperSecretPass &
