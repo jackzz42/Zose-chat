@@ -1,0 +1,118 @@
+Yes, MAC address randomization is already included in the script, but it only runs once when you start the script.
+
+To make it fully automatic, we need to ensure it changes every few minutes. Here's how to do it:
+
+
+---
+
+🔹 1. Make MAC Address Change Automatically Every 5 Minutes
+
+Modify your script to include this command, which creates a cron job:
+
+(crontab -l 2>/dev/null; echo "*/5 * * * * macchanger -r wlan0") | crontab -
+
+This will automatically change the MAC address every 5 minutes.
+
+
+---
+
+🔹 2. (Optional) Change MAC Every Time WiFi Disconnects
+
+To make it even more secure, we can change the MAC every time the WiFi disconnects.
+
+1. Edit the network manager dispatcher script:
+
+nano /etc/NetworkManager/dispatcher.d/99-macchanger
+
+
+2. Add this code:
+
+#!/bin/bash
+if [ "$2" = "down" ]; then
+    macchanger -r wlan0
+fi
+
+
+3. Save and exit (CTRL + X, then Y, then ENTER).
+
+
+4. Give it execution permissions:
+
+chmod +x /etc/NetworkManager/dispatcher.d/99-macchanger
+
+
+
+Now, your MAC address automatically changes when WiFi disconnects.
+
+
+---
+
+🔹 3. Verify That MAC Address is Changing
+
+Run this command to check your current MAC address:
+
+ip link show wlan0 | grep ether
+
+Run it before and after 5 minutes to see the change.
+
+
+---
+
+✅ Now, your MAC address will keep changing automatically!
+
+This makes it much harder for hackers, ISPs, or tracking systems to follow your device.
+
+
+
+.....
+to hide the wifi 
+
+sudo nano /etc/hostapd/hostapd.conf
+
+then 
+
+sudo systemctl restart hostapd
+
+add it to ur phone or ad device 
+
+modify the script add 1 in this line 
+
+ignore_broadcast_ssid=1
+
+to add connect it with ur device 
+For Android:
+
+1. Go to WiFi Settings > Add Network
+
+
+2. Enter your WiFi name (SSID) exactly as it is in hostapd.conf
+
+
+3. Enter the WiFi password
+
+
+4. Set Security to WPA2/WPA3-PSK
+
+
+5. Click Connect
+
+
+
+For Windows:
+
+1. Open WiFi settings
+
+
+2. Click "Manually connect to a wireless network"
+
+
+3. Enter your WiFi name (SSID)
+
+
+4. Select Security type: WPA2-Personal or WPA3
+
+
+5. Enter your WiFi password
+
+
+6. Click Connect
