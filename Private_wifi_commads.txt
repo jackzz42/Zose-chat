@@ -1,0 +1,8 @@
+start 
+sudo chmod +x full_secure_wifi.sh  
+sudo ./full_secure_wifi.sh
+
+stop
+
+sudo chmod +x stop_secure_wifi.sh  
+sudo ./stop_secure_wifi.sh
